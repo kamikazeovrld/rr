@@ -1313,7 +1313,7 @@ final class Base extends Prefab implements ArrayAccess {
 	*	Match routes against incoming URI
 	*	@return mixed
 	**/
-	function run() {
+	function main() {
 		if ($this->blacklisted($this->hive['IP']))
 			// Spammer detected
 			$this->error(403);

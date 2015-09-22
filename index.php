@@ -9,4 +9,4 @@ if ((float)PCRE_VERSION<7.9)
 // Load configuration
 $base->config('config/config.ini');
 
-$base->run();
+$base->main();

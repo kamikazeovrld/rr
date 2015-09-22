@@ -31,7 +31,7 @@ class Index extends Resource{
 
     private function _show(){
         //show dashboard
-        echo \Template::instance()->render('index.html');
+        echo \View::instance()->render('index.html');
     }
 
 }
