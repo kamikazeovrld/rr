@@ -1985,7 +1985,6 @@ final class Base extends Prefab implements ArrayAccess {
 
 	function environment(){
 		$environment = 'environment.' . $this->get('environment.current');
-
 		$variables = $this->get($environment);
 
 		foreach($variables as $key => $value){
