@@ -34,7 +34,8 @@ class User_model {
             $this->mapper->$key = $value;
         }
 
-//todo        \DB::instance()->pdo()->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+//todo
+        DB::instance()->pdo()->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
         try{
             $this->mapper->save();

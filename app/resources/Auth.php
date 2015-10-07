@@ -34,15 +34,18 @@ class Auth extends Resource{
     }
 
     function post($base, $args){
-        var_dump($args);
         $this->route($base, $args);
     }
 
-    private function _show($base, $data){
+    private function _show($base, $data, $error = false){
         $base->set('data', $data);
 
+        if($error){
+//            \Template::instance()->
+        }
+
         //send json ouput
-        echo \Template::instance()->render('json.php');
+        echo \Template::instance()->render('json.php', 'application/json');
     }
 
     private function getData($data, $fields){
@@ -89,11 +92,12 @@ class Auth extends Resource{
             $this->_show($base, $saved_user_data);
 
         }catch (\Exception $e){
-            switch($e->getMessage()){
+/*            switch($e->getMessage()){
                 case 'user not found';
-                    echo 'user not found';
                     break;
-            }
+            }*/
+
+            $this->_show($base, array('error' => $e->getMessage()));
         }
 
         //send down the user's full user data to populate
@@ -111,16 +115,14 @@ class Auth extends Resource{
             $this->_show($base, $saved_user_data);
 
         }catch (\Exception $e){
-            switch($e->getMessage()){
+/*            switch($e->getMessage()){
                 case 'field not found';
-                    echo 'field not found';
-                    exit;
                     break;
                 case 'failed to save new user';
-                    echo 'failed to save new user';
-                    exit;
                     break;
-            }
+            }*/
+
+            $this->_show($base, array('error' => $e->getMessage()));
         }
 
 
@@ -162,20 +164,18 @@ class Auth extends Resource{
             return $user;
 
         }catch (\Exception $e){
-            switch($e->getMessage()){
+/*            switch($e->getMessage()){
                 case 'validation failed':
-//                    var_dump(Form_validation::instance()->error_array());
                     break;
                 case 'no validation rules found':
-                    echo 'no validation rules found';
                     break;
-//                case 'field not found':
-//                    echo 'field not found';
-//                    exit;
-//                    break;
+                case 'field not found':
+                    break;
                 default:
                     echo 'general error, catching, a rogue function has fucked up in block 59 to 75 no trace';
-            }
+            }*/
+
+            throw new \Exception($e->getMessage());
         }
     }
 
