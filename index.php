@@ -9,4 +9,8 @@ if ((float)PCRE_VERSION<7.9)
 // Load configuration
 $base->config('config/config.ini');
 
+//set the current environment
+$base->environment();
+
+
 $base->main();

@@ -1983,6 +1983,15 @@ final class Base extends Prefab implements ArrayAccess {
 		register_shutdown_function(array($this,'unload'),getcwd());
 	}
 
+	function environment(){
+		$environment = 'environment.' . $this->get('environment.current');
+
+		$variables = $this->get($environment);
+
+		foreach($variables as $key => $value){
+			$this->set($key, $value);
+		}
+	}
 }
 
 //! Cache engine
