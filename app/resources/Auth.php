@@ -45,7 +45,7 @@ class Auth extends Resource{
         }
 
         //send json ouput
-        echo \Template::instance()->render('json.php', 'application/json');
+        echo \Template::instance()->render('json.php');
     }
 
     private function getData($data, $fields){
